@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<body>
-    <table>
+<head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body class="col-md-10 col-md-offset-1 col-xs-12">
+    <table class="table table-bordered table-hover">
         <tr>
-            <td>ID</td>
-            <td>Nome</td>
-            <td>Cor</td>
-            <td>Tamanho</td>
-            <td>Som</td>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Cor</th>
+            <th>Tamanho</th>
+            <th>Som</th>
         </tr>
         <% for(var i=0; i<data.length;i++) { %>
             <tr>
