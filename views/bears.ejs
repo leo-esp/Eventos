@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Nome</td>
+            <td>Cor</td>
+            <td>Tamanho</td>
+            <td>Som</td>
+        </tr>
+        <% for(var i=0; i<data.length;i++) { %>
+            <tr>
+                <td>
+                    <%=data[i]._id%>
+                </td>
+                <td>
+                    <%=data[i].name%>
+                </td>
+                <td>
+                    <%=data[i].color%>
+                </td>
+                <td>
+                    <%=data[i].size%>
+                </td>
+                <td>
+                    <%=data[i].noise%>
+                </td>
+            </tr>
+            <%}%>
+
+    </table>
+</body>
+
+</html>
