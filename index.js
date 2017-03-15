@@ -5,6 +5,7 @@ var expressValidator = require('express-validator');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://herogod:esposito@ds027896.mlab.com:27896/beardb'); // connect to our database
 var Bear = require('./database/models/bear');
+var Extrato = require('./database/models/extrato');
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -101,6 +102,45 @@ router.route('/bears/:bear_id')
                 res.send(err);
 
             res.json({ message: 'Sucessfully deleted' });
+        });
+    });
+
+router.route('/financial')
+    .get(function(req, res){
+         Extrato.find(function(err, transactions) {
+            if (err)
+                res.send(err);
+            res.format({
+                html: function() {
+                    res.render('extrato', { data: transactions });
+                },
+                json: function() {
+                    res.json(transactions);
+                }
+            });
+        });
+    })
+    .post(function(req, res){
+        var extrato = new Extrato();
+        extrato.value = req.body.value;
+        extrato.mes = req.body.mes;
+
+        extrato.save(function(err) {
+            if (err)
+                res.send(err);
+
+            Extrato.find(function(err, transactions) {
+                if (err)
+                    res.send(err);
+                res.format({
+                    html: function() {
+                        res.render('extrato', { data: transactions });
+                    },
+                    json: function() {
+                        res.json(transactions);
+                    }
+                });
+            });
         });
     });
 
